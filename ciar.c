@@ -24,12 +24,12 @@
 
 #define COUNTRY_CODE_LEN 2
 
-static void save_rslt(FILE *fp, uint32_t start_ip, int32_t prefix);
-static void cvt_ip_range(FILE *outfp, uint32_t start_ip, uint32_t end_ip);
+static void save_rslt(FILE * fp, uint32_t start_ip, int32_t prefix);
+static void cvt_ip_range(FILE * outfp, uint32_t start_ip, uint32_t end_ip);
 static FILE *open_file(const char *path, const char *mode);
 
 /* output an IP range like 1.0.8.0/21 */
-static void save_rslt(FILE *fp, uint32_t start_ip, int32_t prefix)
+static void save_rslt(FILE * fp, uint32_t start_ip, int32_t prefix)
 {
 	struct in_addr addr;
 
@@ -63,7 +63,7 @@ static FILE *open_file(const char *path, const char *mode)
 	if (stream == NULL) {
 		fprintf(stderr, "\
 %s: Could not open file %s; %s\n",
-program_invocation_short_name, path, strerror (errno));
+program_invocation_short_name, path, strerror(errno));
 		exit(EXIT_FAILURE);
 	} else {
 		return stream;
@@ -97,10 +97,6 @@ Usage:\n\
 	cc[2] = '\0';
 
 	src = open_file(argv[1], "r");
-	if (src == NULL) {
-		perror(argv[0]);
-		exit(EXIT_FAILURE);
-	}
 	if (argc == 3)
 		dst = stdout;
 	else
