@@ -33,12 +33,9 @@ static void save_rslt(FILE *fp, uint32_t start_ip, int32_t prefix)
 {
 	struct in_addr addr;
 
+	assert(prefix > 0 && prefix <= 32);
 	addr.s_addr = ntohl(start_ip);
-	fprintf(fp, "%s", inet_ntoa(addr));
-	if (prefix < 32)
-		fprintf(fp, "/%d\n", prefix);
-	else
-		fputc('\n', fp);
+	fprintf(fp, "%s/%d\n", inet_ntoa(addr), prefix);
 }
 
 /* convert an integer IP range to ASCII blocks */
